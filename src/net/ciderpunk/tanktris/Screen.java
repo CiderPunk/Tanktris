@@ -22,9 +22,13 @@ public class Screen extends Canvas  implements Runnable, KeyListener
   {
 		oFrame = new JFrame("Tanktris");
 		JPanel oPanel = (JPanel) oFrame.getContentPane();
-		oPanel.setPreferredSize(new Dimension(800,600));
+
+		Dimension oSize = new Dimension(800,600);
+		oFrame.setSize(oSize);		
+		oPanel.setPreferredSize(oSize);
+
 		oPanel.add(this);
-		oFrame.setSize(800, 600);
+		//oFrame.setSize(800, 600);
 	
 		setBounds(0,0,800,600);
 		this.addKeyListener(this);
@@ -32,6 +36,9 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 		oFrame.setVisible(true);
 		oFrame.setIgnoreRepaint(true);
 		oFrame.setResizable(false);
+	
+		oFrame.setLocationRelativeTo(null);
+		
 		this.createBufferStrategy(2);
 		oBuffer = this.getBufferStrategy();
   }
@@ -65,7 +72,7 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 		long lTicks = 0;
 		long lLastTime, lStartTime;
 		lLastTime = lStartTime = System.currentTimeMillis();
-		
+		System.out.println("started");
 		while (oCurrentState != null){
 			//get current frame time
 			long lCurrentTime = System.currentTimeMillis();
@@ -88,10 +95,11 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 			long lNextFrame = (long) Math.floor(fTimePerFrame * lTicks) + lStartTime;
 			long lDiff = lNextFrame - System.currentTimeMillis();
 			//check for long delays
-			if (lDiff < -50){
+			if (lDiff < -10){
 				//reset
 				lStartTime = System.currentTimeMillis();
 				lTicks = 0;
+				System.out.println("frame resynch, delay: " + lDiff);
 			}
 			
 			while(lDiff > 1){
@@ -99,8 +107,8 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 				lDiff = lNextFrame - System.currentTimeMillis();
 			}
 		}
-		
-		
+		oFrame.dispose();
+		//close
 		
 	}
 

@@ -25,8 +25,9 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 		oPanel.setPreferredSize(new Dimension(800,600));
 		oPanel.add(this);
 		oFrame.setSize(800, 600);
+	
 		setBounds(0,0,800,600);
-		
+		this.addKeyListener(this);
 		oFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		oFrame.setVisible(true);
 		oFrame.setIgnoreRepaint(true);
@@ -52,26 +53,55 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 	}
 	
 	
+
 	public void run() {
 		
 		//init everything
 		init();
 		iMode = GameMode.Playing;
-		
 		oCurrentState = oGame;
 		
+		double fTimePerFrame = 1000.0f / 60.0f;
+		long lTicks = 0;
+		long lLastTime, lStartTime;
+		lLastTime = lStartTime = System.currentTimeMillis();
+		
 		while (oCurrentState != null){
-			oCurrentState.update();
+			//get current frame time
+			long lCurrentTime = System.currentTimeMillis();
+			long lFrameTime = lCurrentTime - lLastTime; 
+			lLastTime = lCurrentTime;
+			
+			oCurrentState.update(lFrameTime);
+			//draw stuff
 			Graphics2D oG = (Graphics2D) oBuffer.getDrawGraphics();
 			oCurrentState.draw(oG);
-			//flip buffers
-			
 			oG.dispose();
+			
+			//flip buffers
 			if (!oBuffer.contentsLost()){
 				oBuffer.show();
 			}
 
+			//get time till next frame.
+			lTicks++;
+			long lNextFrame = (long) Math.floor(fTimePerFrame * lTicks) + lStartTime;
+			long lDiff = lNextFrame - System.currentTimeMillis();
+			//check for long delays
+			if (lDiff < -50){
+				//reset
+				lStartTime = System.currentTimeMillis();
+				lTicks = 0;
+			}
+			
+			while(lDiff > 1){
+				try { Thread.sleep(lDiff / 2); } catch (Exception e) {}
+				lDiff = lNextFrame - System.currentTimeMillis();
+			}
 		}
+		
+		
+		
 	}
 
 

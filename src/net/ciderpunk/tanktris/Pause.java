@@ -11,7 +11,7 @@ public class Pause implements IGameState {
 	}
 
 	@Override
-	public void update() {
+	public void update(long lTime) {
 		// TODO Auto-generated method stub
 		
 	}

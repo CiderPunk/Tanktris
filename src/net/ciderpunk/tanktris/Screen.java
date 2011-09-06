@@ -9,6 +9,17 @@ import javax.swing.*;
 public class Screen extends Canvas  implements Runnable, KeyListener
 {
 	
+	//singleton pattern
+	private static class ScreenHolder{
+		public static final Screen instance = new Screen();
+	}
+	
+	//get instance
+	public static Screen getInstance(){
+		return ScreenHolder.instance;
+	}
+	
+	
 	JFrame oFrame;
 	protected  GameMode iMode;
 	protected BufferStrategy oBuffer;
@@ -18,7 +29,10 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 	protected Pause oPause;
 	
 	
-  public Screen()
+	
+	
+	
+  private Screen()
   {
 		oFrame = new JFrame("Tanktris");
 		JPanel oPanel = (JPanel) oFrame.getContentPane();

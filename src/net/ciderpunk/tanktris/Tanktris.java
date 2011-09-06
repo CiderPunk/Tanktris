@@ -5,8 +5,7 @@ public class Tanktris {
 
   public static void main(String[] args)
   {
-   	Screen oScreen = new Screen();    
-   	oScreen.run();
+   	Screen.getInstance().run();
   }
 	
 	

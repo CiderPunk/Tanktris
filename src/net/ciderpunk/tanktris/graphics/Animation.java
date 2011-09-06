@@ -34,7 +34,12 @@ public class Animation {
 		}
 	}
 	
-	
+	public class AnimationState{
+		public AnimationState(){
+			
+		}
+		
+	}
 	
 	
 }

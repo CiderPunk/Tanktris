@@ -58,5 +58,21 @@ public class Frame {
 		oTransform.rotate(iRads,iXOffs, iYOffs);
 		oG.drawImage(oImage, oTransform, null);
 	}
+
+	public int getXOffset(){
+		return iXOffs;
+	}
+	
+	public int getYOffset(){
+		return iYOffs;
+	}
+	
+	public int getWidth(){
+		return oImage.getWidth(null);
+	}
+
+	public int getHeight(){
+		return oImage.getHeight(null);
+	}
 	
 }

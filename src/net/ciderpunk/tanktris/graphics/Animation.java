@@ -7,39 +7,48 @@ public class Animation {
 
 	private ArrayList aCells;
 	private long lTotalTime;
+	private boolean bLoop;
 	
+	//constructors
 	public Animation(){
-		aCells = new ArrayList();
+		this(true);
 	}
 	
+	public Animation(boolean loop){
+		aCells = new ArrayList();
+		bLoop = loop;
+	}
+	
+	
+	//add a new cell to an animation sequence
 	public void addFrame(Frame oFrame, long lDelay){
 		lTotalTime += lDelay;
 		aCells.add(new Cell(oFrame, lTotalTime));
 	}
 	
-	/*
-	public Frame getFrame(long lTime){
-		AtomicInteger iCurrentFrame = new AtomicInteger(0);
-		
-		
+	//update an instance of the animation
+	public void update(AnimationState oState){
+		if (oState.lTotalTime > lTotalTime && bLoop){
+			oState.iFrameIndex = 0;
+			oState.lTotalTime -= lTotalTime;
+		}
+		while( ((Cell) aCells.get(oState.iFrameIndex)).lTime < oState.lTotalTime){
+			oState.iFrameIndex++;
+		}
+		oState.oCurrentFrame =  (IFrame) ((Cell) aCells.get(oState.iFrameIndex)).oFrame;
 	}
-	*/
+
 	
 	protected class Cell{
 		Frame oFrame;
-		long lDelay;
-		public Cell(Frame frame, long delay){
+		long lTime;
+		public Cell(Frame frame, long time){
 			oFrame = frame;
-			lDelay = delay;
+			lTime = time;
 		}
 	}
 	
-	public class AnimationState{
-		public AnimationState(){
-			
-		}
-		
-	}
+
 	
 	
 }

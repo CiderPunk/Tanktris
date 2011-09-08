@@ -36,7 +36,7 @@ public class Frame {
 	
 	public Frame(Frame oBaseFrame, int iX, int iY, int iW, int iH, int iXOffset, int iYOffset){
 		oImage = Screen.getInstance().createImage(iW,  iH);
-		Graphics oG = oBaseFrame.getImage().getGraphics();
+		Graphics oG = oImage.getGraphics();
 		oG.drawImage(oBaseFrame.getImage(), iX,iY,iX+iW,iY+iH,0,0,iW,iH, null);
 		iXOffs = iXOffset;
 		iYOffs = iYOffset;

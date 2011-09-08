@@ -15,7 +15,7 @@ public class AnimationState{
 	}
 	
 	public IFrame getFrame(){
-		return null;
+		return oCurrentFrame;
 	}
 	
 	public void update(long lElapsedTime){

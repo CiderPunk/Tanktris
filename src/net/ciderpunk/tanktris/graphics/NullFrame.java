@@ -21,7 +21,7 @@ public class NullFrame implements IFrame {
 	}
 
 	@Override
-	public void drawRotate(Graphics2D oG, int x, int y, int iRads) {
+	public void drawRotate(Graphics2D oG, int x, int y, double iRads) {
 	}
 
 }

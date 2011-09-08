@@ -7,5 +7,5 @@ public interface IFrame {
 	//draw image
 	public void draw(Graphics oG, int x, int y);
 	//draw image with some rotation
-	public void drawRotate(Graphics2D oG, int x, int y, int iRads);
+	public void drawRotate(Graphics2D oG, int x, int y, double iRads);
 }

@@ -2,15 +2,18 @@ package net.ciderpunk.tanktris.graphics;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import net.ciderpunk.tanktris.Screen;
 
-public class Frame {
+public class Frame implements IFrame {
 
 	
-	protected Image oImage; 
+	protected BufferedImage oImage; 
 	protected int iXOffs; 
 	protected int iYOffs;
 	
@@ -23,7 +26,11 @@ public class Frame {
 	
 	//instantiate frame from image with offset coordinates 
 	public Frame(String sPath, int iXOffset, int iYOffset){
-		oImage = new ImageIcon(sPath).getImage();
+		try{
+		oImage = ImageIO.read(new File(sPath));
+		}
+		catch(Exception ex){}
+		//oImage = new ImageIcon(sPath).getImage();
 		iXOffs = iXOffset;
 		iYOffs = iYOffset;
 	}
@@ -35,9 +42,10 @@ public class Frame {
 	
 	
 	public Frame(Frame oBaseFrame, int iX, int iY, int iW, int iH, int iXOffset, int iYOffset){
-		oImage = Screen.getInstance().createImage(iW,  iH);
+	//	oImage = Screen.getInstance().createImage(iW,  iH);
+		oImage = new BufferedImage(iW,iH,BufferedImage.TYPE_INT_ARGB);
 		Graphics oG = oImage.getGraphics();
-		oG.drawImage(oBaseFrame.getImage(), iX,iY,iX+iW,iY+iH,0,0,iW,iH, null);
+		oG.drawImage(oBaseFrame.getImage(),0,0,iW,iH,iX,iY,iX+iW,iY+iH, null);
 		iXOffs = iXOffset;
 		iYOffs = iYOffset;
 	}
@@ -52,7 +60,7 @@ public class Frame {
 		oG.drawImage(oImage, x - iXOffs, y - iYOffs, null);
 	}
 	//draw image with some rotation
-	public void drawRotate(Graphics2D oG, int x, int y, int iRads){
+	public void drawRotate(Graphics2D oG, int x, int y, double iRads){
 		AffineTransform oTransform = new AffineTransform();
 		oTransform.setToTranslation(x, y);
 		oTransform.rotate(iRads,iXOffs, iYOffs);

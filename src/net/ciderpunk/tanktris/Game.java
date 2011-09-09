@@ -20,8 +20,8 @@ public class Game implements IGameState {
 		oImage = new Frame(oImg,0,0,36,96);
 	}
 	
-	public void update(long lTime){
-		oGun.update(lTime);
+	public void update(){
+		oGun.update();
 	}
 	
 	protected int x;

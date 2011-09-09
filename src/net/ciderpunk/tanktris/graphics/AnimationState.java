@@ -2,24 +2,24 @@ package net.ciderpunk.tanktris.graphics;
 
 
 public class AnimationState{
-	protected IFrame oCurrentFrame;
-	protected int iFrameIndex;
-	protected long lTotalTime;
+	protected IFrame oCurrentCell;
+	protected int iCellIndex;
+	protected long lFrameCount;
 	protected Animation oCurrentAnim;
 	
 	public void startAnim(Animation oAnim){
-		iFrameIndex = 0;
-		lTotalTime = 0;
+		iCellIndex = 0;
+		lFrameCount = 0;
 		oCurrentAnim = oAnim;
-		oCurrentFrame = NullFrame.getInstance();
+		oCurrentCell = NullFrame.getInstance();
 	}
 	
 	public IFrame getFrame(){
-		return oCurrentFrame;
+		return oCurrentCell;
 	}
 	
-	public void update(long lElapsedTime){
-		lTotalTime += lElapsedTime;
+	public void update(){
+		lFrameCount++;
 		oCurrentAnim.update(this);
 	}
 	

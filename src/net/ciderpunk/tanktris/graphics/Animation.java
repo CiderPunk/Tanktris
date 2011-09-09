@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.*;
 public class Animation {
 
 	private ArrayList aCells;
-	private long lTotalTime;
+	private long lTotalFrames;
 	private boolean bLoop;
 	
 	//constructors
@@ -26,36 +26,35 @@ public class Animation {
 	}
 	*/
 	//add a new cell to an animation sequence
-	public void addFrame(IFrame oFrame, long lDelay){
-		lTotalTime += lDelay;
-		aCells.add(new Cell(oFrame, lTotalTime));
+	public void addFrame(IFrame oFrame, long lFrames){
+		lTotalFrames += lFrames;
+		aCells.add(new Cell(oFrame, lTotalFrames));
 	}
 	
 	//update an instance of the animation
 	public void update(AnimationState oState){
-		if (oState.lTotalTime > lTotalTime){
-
+		if (oState.lFrameCount > lTotalFrames){
 			if (bLoop){
-				oState.iFrameIndex = 0;
-				oState.lTotalTime = 0;
+				oState.iCellIndex = 0;
+				oState.lFrameCount = 0;
 			}
 			else{
 				return;
 			}
 		}
-		while( ((Cell) aCells.get(oState.iFrameIndex)).lTime < oState.lTotalTime){
-			oState.iFrameIndex++;
+		while( ((Cell) aCells.get(oState.iCellIndex)).lFrames < oState.lFrameCount){
+			oState.iCellIndex++;
 		}
-		oState.oCurrentFrame =  (IFrame) ((Cell) aCells.get(oState.iFrameIndex)).oFrame;
+		oState.oCurrentCell =  (IFrame) ((Cell) aCells.get(oState.iCellIndex)).oFrame;
 	}
 
 	
 	protected class Cell{
 		IFrame oFrame;
-		long lTime;
+		long lFrames;
 		public Cell(IFrame frame, long time){
 			oFrame = frame;
-			lTime = time;
+			lFrames = time;
 		}
 	}
 	

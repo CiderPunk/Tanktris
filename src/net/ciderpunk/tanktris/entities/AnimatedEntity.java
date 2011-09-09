@@ -16,10 +16,10 @@ public abstract class AnimatedEntity extends Entity {
 	
 
 	@Override
-	public void update(long lTime) {
-		oAnimState.update(lTime);
-		
+	public void update() {
+		oAnimState.update();
 	}
+	
 	@Override
 	public void draw(Graphics2D oG) {
 		oAnimState.getFrame().draw(oG, iX, iY);

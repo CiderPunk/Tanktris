@@ -12,6 +12,6 @@ public abstract class Entity {
 	int iX;
 	int iY;
 
-	public abstract void update(long lTime);
+	public abstract void update();
 	public abstract void draw(Graphics2D oG);
 }

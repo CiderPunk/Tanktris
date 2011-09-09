@@ -10,33 +10,41 @@ public class Gun extends AnimatedEntity{
 
 	//animations	
 	static Animation oAnimGunFire; 
-	
+	static Animation oAnimIdle; 
+	static Frame oFrameIdle;
 
 	double iRads;
 	
 	public static void loadResources(){
+		
 		Frame oImg = new Frame("res/images/sprites.png");
-		oAnimGunFire = new Animation(true);
-		oAnimGunFire.addFrame(new Frame(oImg,0,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,36,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,72,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,108,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,144,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,180,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,216,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,252,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,288,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,324,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,360,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,396,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,432,0,36,96,19,96),20);
-		oAnimGunFire.addFrame(new Frame(oImg,468,0,36,96,19,96),20);	
+		Frame oFrameIdle = new Frame(oImg,0,0,36,96,19,96);
+		
+		oAnimIdle = new Animation(false);
+		oAnimIdle.addFrame(oFrameIdle,0);
+		
+		oAnimGunFire = new Animation(false);
+		oAnimGunFire.addFrame(new Frame(oImg,0,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,36,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,72,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,108,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,144,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,180,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,216,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,252,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,288,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,324,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,360,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,396,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(new Frame(oImg,432,0,36,96,19,96),3);
+		oAnimGunFire.addFrame(oFrameIdle,0);	
+		
 	}
 	
 	
 	public Gun(int x, int y){
 		super(x,y);
-	
+		oAnimState.startAnim(oAnimIdle);
 	}
 	
 	public void Fire(){
@@ -46,10 +54,9 @@ public class Gun extends AnimatedEntity{
 	
 	
 	@Override
-	public void update(long lTime) {
+	public void update() {
 		// TODO Auto-generated method stub
-		super.update(lTime);
-		
+		super.update();	
 		iRads+= 0.01;
 	}
 

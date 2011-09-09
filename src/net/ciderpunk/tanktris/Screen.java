@@ -88,12 +88,13 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 		lLastTime = lStartTime = System.currentTimeMillis();
 		System.out.println("started");
 		while (oCurrentState != null){
+			/*
 			//get current frame time
 			long lCurrentTime = System.currentTimeMillis();
 			long lFrameTime = lCurrentTime - lLastTime; 
 			lLastTime = lCurrentTime;
-			
-			oCurrentState.update(lFrameTime);
+			*/
+			oCurrentState.update();
 			//draw stuff
 			Graphics2D oG = (Graphics2D) oBuffer.getDrawGraphics();
 			oCurrentState.draw(oG);

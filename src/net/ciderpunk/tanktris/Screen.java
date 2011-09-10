@@ -6,6 +6,8 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.*;
 
+import net.ciderpunk.tanktris.game.Game;
+
 public class Screen extends Canvas  implements Runnable, KeyListener
 {
 	
@@ -21,12 +23,11 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 	
 	
 	JFrame oFrame;
-	protected  GameMode iMode;
 	protected BufferStrategy oBuffer;
 	
 	IGameState oCurrentState;
 	protected Game oGame;
-	protected Pause oPause;
+	//protected Pause oPause;
 	
 	
 	
@@ -68,9 +69,11 @@ public class Screen extends Canvas  implements Runnable, KeyListener
   
 	
 	public void init(){
-		oPause = new Pause();
+		//oPause = new Pause();
 		oGame = new Game();
 		oGame.init();
+		
+		setState(oGame);
 	}
 	
 	
@@ -79,7 +82,6 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 		
 		//init everything
 		init();
-		iMode = GameMode.Playing;
 		oCurrentState = oGame;
 		
 		double fTimePerFrame = 1000.0f / 60.0f;
@@ -124,22 +126,35 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 		}
 		oFrame.dispose();
 		//close
-		
 	}
 
 
 	public void stop(){
-		oCurrentState = null;
+		setState(null);
 	}
 	
 	
+	
+	protected void setState(IGameState oState){
+		if(oCurrentState != null){
+			oCurrentState.stop(this);
+		}
+		oCurrentState = oState;
+		if(oCurrentState != null){
+			oCurrentState.start(this);
+		}
+	
+	}
+	
+	
+	
 	public void pause(){
-		oCurrentState = oPause;
+	//	oCurrentState = oPause;
 	}
 	
 
 	public void resume(){
-		oCurrentState = oPause;
+	//	oCurrentState = oPause;
 	}
 	
 

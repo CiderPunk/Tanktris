@@ -1,7 +1,9 @@
-package net.ciderpunk.tanktris;
+package net.ciderpunk.tanktris.gui;
 
 import java.awt.Graphics2D;
 
+import net.ciderpunk.tanktris.IGameState;
+/*
 public class Pause implements IGameState {
 
 	@Override
@@ -22,4 +24,17 @@ public class Pause implements IGameState {
 		
 	}
 
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
+*/

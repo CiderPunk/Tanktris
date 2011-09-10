@@ -62,9 +62,15 @@ public class Frame implements IFrame {
 	//draw image with some rotation
 	public void drawRotate(Graphics2D oG, int x, int y, double iRads){
 		AffineTransform oTransform = new AffineTransform();
-		oTransform.setToTranslation(x, y);
-		oTransform.rotate(iRads,iXOffs, iYOffs);
+
+		oTransform.setToTranslation(x - iXOffs, y - iYOffs);
+		oTransform.rotate(iRads,iXOffs, iYOffs );
+		//oTransform.rotate(iRads,0, 0 );
 		oG.drawImage(oImage, oTransform, null);
+	
+		
+		//oG.setColor(Color.BLACK);
+		//oG.drawLine(x,y,x+1,y);
 	}
 
 	public int getXOffset(){

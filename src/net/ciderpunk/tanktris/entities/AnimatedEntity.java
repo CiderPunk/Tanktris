@@ -9,7 +9,6 @@ public abstract class AnimatedEntity extends Entity {
 	AnimationState oAnimState;
 	
 	public AnimatedEntity(int x, int y){
-		super(x,y);
 		oAnimState = new AnimationState();
 	}
 	

@@ -2,9 +2,10 @@ package net.ciderpunk.tanktris.game;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import net.ciderpunk.tanktris.IGameState;
-import net.ciderpunk.tanktris.entities.Gun;
+import net.ciderpunk.tanktris.entities.*;
 import net.ciderpunk.tanktris.graphics.Frame;
 
 public class Game implements IGameState, MouseMotionListener, MouseListener {
@@ -12,41 +13,51 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	
 	Gun[] aGuns;
 	Frame oImage;
+	
+	final LinkedEntity oHead;
 
-
+	public Game(){
+		oHead = new LinkedEntity();
+	}
+	
+	
 	public void init(){
+		
+
 		Gun.loadResources();
-		aGuns = new Gun[10];
+		
+
+		aGuns = new Gun[2];
 		aGuns[0] = new Gun(600,100);
 		aGuns[1] = new Gun(600,500);
-		aGuns[2] = new Gun(400,100);
-		aGuns[3] = new Gun(400,500);
-		aGuns[4] = new Gun(200,100);
-		aGuns[5] = new Gun(200,500);
-		aGuns[6] = new Gun(100,100);
-		aGuns[7] = new Gun(100,500);
 
-		aGuns[8] = new Gun(300,100);
-		aGuns[9] = new Gun(300,500);
+		registerEntity(aGuns[0]);
+		registerEntity(aGuns[1]);
+	}
+	
+	public void registerEntity(Entity oEnt){
+		oHead.insert(oEnt);
 	}
 	
 	public void update(){
-		for(int i = 0; i < aGuns.length; i++){
-			aGuns[i].update();
+		Entity oEnt = (Entity) oHead.getNext();
+		while (oEnt != null){
+			oEnt.update();
+			oEnt = (Entity)oEnt.getNext();
 		}
 	}
 	
-	protected int x;
 
 	public void draw(Graphics2D oGraphics) {
 		// TODO Auto-generated method stub
 		oGraphics.setColor(Color.green);
 		oGraphics.fillRect(0,0,800,600);
 		oGraphics.setColor(Color.WHITE);
-		oGraphics.drawString("test",x++, 20);
 		
-		for(int i = 0; i < aGuns.length; i++){
-			aGuns[i].draw(oGraphics);
+		Entity oEnt = (Entity) oHead.getNext();
+		while (oEnt != null){
+			oEnt.draw(oGraphics);
+			oEnt = (Entity)oEnt.getNext();
 		}
 	}
 
@@ -63,6 +74,7 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		for(int i = 0; i < aGuns.length; i++){
 			aGuns[i].trackTo(e.getX(), e.getY());
 		}
+
 	}
 
 	@Override
@@ -77,7 +89,6 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	public void stop(Component oComponent) {
 		// TODO Auto-generated method stub
 		oComponent.removeMouseMotionListener(this);
-
 		oComponent.removeMouseListener(this);
 	}
 

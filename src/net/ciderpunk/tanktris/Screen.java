@@ -26,9 +26,7 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 	protected BufferStrategy oBuffer;
 	
 	IGameState oCurrentState;
-	protected Game oGame;
-	//protected Pause oPause;
-	
+
 	
 	
 	
@@ -70,10 +68,8 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 	
 	public void init(){
 		//oPause = new Pause();
-		oGame = new Game();
-		oGame.init();
-		
-		setState(oGame);
+		Game.getInstance().init();
+		setState(Game.getInstance());
 	}
 	
 	
@@ -82,7 +78,6 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 		
 		//init everything
 		init();
-		oCurrentState = oGame;
 		
 		double fTimePerFrame = 1000.0f / 60.0f;
 		long lTicks = 0;

@@ -11,21 +11,32 @@ import net.ciderpunk.tanktris.graphics.Frame;
 public class Game implements IGameState, MouseMotionListener, MouseListener {
 	
 	
+	//singleton pattern
+	private static class GameHolder{
+		public static final Game instance = new Game();
+	}
+	
+	//get instance
+	public static Game getInstance(){
+		return GameHolder.instance;
+	}
+	
 	Gun[] aGuns;
 	Frame oImage;
 	
 	final LinkedEntity oHead;
 
-	public Game(){
+	private Game(){
 		oHead = new LinkedEntity();
 	}
 	
 	
 	public void init(){
 		
-
-		Gun.loadResources();
+		Frame oImg = new Frame("res/images/sprites.png");
 		
+		Gun.loadResources(oImg);
+		Shot.loadResources(oImg);
 
 		aGuns = new Gun[2];
 		aGuns[0] = new Gun(600,100);

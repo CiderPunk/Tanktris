@@ -2,6 +2,8 @@ package net.ciderpunk.tanktris.entities;
 
 import java.awt.Graphics2D;
 
+import net.ciderpunk.tanktris.IGameState;
+import net.ciderpunk.tanktris.game.Game;
 import net.ciderpunk.tanktris.graphics.*;
 
 
@@ -16,9 +18,9 @@ public class Gun extends AnimatedEntity{
 
 	double iRads;
 	
-	public static void loadResources(){
+	public static void loadResources(Frame oImg){
 		
-		Frame oImg = new Frame("res/images/sprites.png");
+
 		Frame oFrameIdle = new Frame(oImg,0,0,36,96,19,104);
 		oFrameDome = new Frame(oImg,0,96,31,31,15,15);
 		oAnimIdle = new Animation(false);
@@ -50,6 +52,10 @@ public class Gun extends AnimatedEntity{
 	
 	public void fire(){
 		oAnimState.startAnim(oAnimGunFire);
+		
+		Shot oShot = new Shot(this.getX(), this.getY(), 0.4, iRads);
+		
+		Game.getInstance().registerEntity(oShot);
 	}
 
 	
@@ -57,7 +63,7 @@ public class Gun extends AnimatedEntity{
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		super.update();	
+		super.update();
 	}
 
 

@@ -53,8 +53,7 @@ public class Gun extends AnimatedEntity{
 	public void fire(){
 		oAnimState.startAnim(oAnimGunFire);
 		
-		Shot oShot = new Shot(this.getX(), this.getY(), 0.4, iRads);
-		
+		Shot oShot = new Shot(this.getX(), this.getY(), iRads,  4.0);
 		Game.getInstance().registerEntity(oShot);
 	}
 

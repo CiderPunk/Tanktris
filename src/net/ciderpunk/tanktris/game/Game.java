@@ -37,6 +37,7 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		
 		Gun.loadResources(oImg);
 		Shot.loadResources(oImg);
+		Explosion.loadResources();
 
 		aGuns = new Gun[2];
 		aGuns[0] = new Gun(600,100);
@@ -44,6 +45,8 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 
 		registerEntity(aGuns[0]);
 		registerEntity(aGuns[1]);
+		
+	
 	}
 	
 	public void registerEntity(Entity oEnt){
@@ -122,9 +125,9 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
+	public void mousePressed(MouseEvent e) {
 		for(int i = 0; i < aGuns.length; i++){
-			aGuns[i].fire();
+			aGuns[i].fire(e.getX(), e.getY());
 		}
 		
 	}

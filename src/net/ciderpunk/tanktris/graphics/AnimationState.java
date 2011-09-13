@@ -14,6 +14,10 @@ public class AnimationState{
 		oCurrentCell = NullFrame.getInstance();
 	}
 	
+	public long getFrameCount(){
+		return lFrameCount;
+	}
+	
 	public IFrame getFrame(){
 		return oCurrentCell;
 	}

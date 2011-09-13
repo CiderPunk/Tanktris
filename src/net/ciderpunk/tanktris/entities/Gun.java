@@ -50,10 +50,15 @@ public class Gun extends AnimatedEntity{
 		oAnimState.startAnim(oAnimIdle);
 	}
 	
-	public void fire(){
-		oAnimState.startAnim(oAnimGunFire);
+	public void fire(int iTargetX, int iTargetY){
+		int iXdiff = iTargetX - iX;
+		int iYdiff = iTargetY - iY;
+		double dDist = Math.sqrt((iXdiff * iXdiff) + (iYdiff * iYdiff));
+		int iTime = (int)(dDist / 4.0f);
 		
-		Shot oShot = new Shot(this.getX(), this.getY(), iRads,  4.0);
+		
+		oAnimState.startAnim(oAnimGunFire);
+		Shot oShot = new Shot(this.getX(), this.getY(), iRads,  4.0f, iTime);
 		Game.getInstance().registerEntity(oShot);
 	}
 

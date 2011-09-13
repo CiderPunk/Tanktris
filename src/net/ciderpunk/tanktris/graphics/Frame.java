@@ -27,7 +27,7 @@ public class Frame implements IFrame {
 	//instantiate frame from image with offset coordinates 
 	public Frame(String sPath, int iXOffset, int iYOffset){
 		try{
-		oImage = ImageIO.read(new File(sPath));
+			oImage = ImageIO.read(new File(sPath));
 		}
 		catch(Exception ex){}
 		//oImage = new ImageIcon(sPath).getImage();

@@ -24,6 +24,7 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	Gun[] aGuns;
 	Frame oImage;
 	
+
 	final LinkedEntity oHead;
 
 	private Game(){
@@ -46,7 +47,7 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		registerEntity(aGuns[0]);
 		registerEntity(aGuns[1]);
 		
-	
+		registerEntity(new FrameCounter(20,20));
 	}
 	
 	public void registerEntity(Entity oEnt){
@@ -59,6 +60,7 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 			oEnt.update();
 			oEnt = (Entity)oEnt.getNext();
 		}
+
 	}
 	
 
@@ -87,6 +89,7 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	public void mouseMoved(MouseEvent e) {
 		for(int i = 0; i < aGuns.length; i++){
 			aGuns[i].trackTo(e.getX(), e.getY());
+
 		}
 
 	}

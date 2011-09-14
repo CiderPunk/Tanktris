@@ -83,6 +83,7 @@ public class Gun extends AnimatedEntity{
 		int iDX = x- iX;;
 		int iDY = y -iY;
 		this.iRads = Math.atan2(iDY, iDX) + (Math.PI  / 2);
+		//this.fire(x, y);
 	}
 
 

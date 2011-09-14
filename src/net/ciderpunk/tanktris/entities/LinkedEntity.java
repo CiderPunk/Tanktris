@@ -5,7 +5,7 @@ public class LinkedEntity {
 	protected LinkedEntity oNext;
 	protected LinkedEntity oPrev;
 	
-	public void remove(){
+	public synchronized void remove(){
 		if (oNext != null){
 			oNext.oPrev = oPrev;
 		}
@@ -14,7 +14,7 @@ public class LinkedEntity {
 		oPrev = null;
 	}
 	
-	public void insert(LinkedEntity e){
+	public synchronized void insert(LinkedEntity e){
 		if (oNext != null){
 			oNext.oPrev = e;
 		}

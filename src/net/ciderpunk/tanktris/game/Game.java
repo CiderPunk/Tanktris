@@ -57,8 +57,10 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	public void update(){
 		Entity oEnt = (Entity) oHead.getNext();
 		while (oEnt != null){
+			Entity oNextEnt = (Entity) oEnt.getNext();
 			oEnt.update();
 			oEnt = (Entity)oEnt.getNext();
+			oEnt = oNextEnt;
 		}
 
 	}

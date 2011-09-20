@@ -22,7 +22,9 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	}
 	
 	Gun[] aGuns;
+	Grid oGrid;
 	Frame oImage;
+	
 	
 
 	final LinkedEntity oHead;
@@ -41,13 +43,16 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		Explosion.loadResources();
 
 		aGuns = new Gun[2];
-		aGuns[0] = new Gun(600,100);
-		aGuns[1] = new Gun(600,500);
+		aGuns[0] = new Gun(720,50);
+		aGuns[1] = new Gun(720,550);
 
 		registerEntity(aGuns[0]);
 		registerEntity(aGuns[1]);
 		
 		registerEntity(new FrameCounter(20,20));
+		
+		oGrid = new Grid(24,12, 0,96); 
+		
 	}
 	
 	public void registerEntity(Entity oEnt){
@@ -71,6 +76,8 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		oGraphics.setColor(Color.green);
 		oGraphics.fillRect(0,0,800,600);
 		oGraphics.setColor(Color.WHITE);
+		
+		oGrid.draw(oGraphics);
 		
 		Entity oEnt = (Entity) oHead.getNext();
 		while (oEnt != null){

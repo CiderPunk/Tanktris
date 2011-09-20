@@ -1,5 +1,6 @@
 package net.ciderpunk.tanktris.entities;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import net.ciderpunk.tanktris.IGameState;
@@ -73,9 +74,11 @@ public class Gun extends AnimatedEntity{
 
 	@Override
 	public void draw(Graphics2D oG) {
-		
+		oG.setColor(Color.BLUE);
+
 		oFrameDome.draw(oG, this.iX, this.iY);
 		this.oAnimState.getFrame().drawRotate(oG, this.iX, this.iY, iRads);
+		oG.drawLine(iX, iY, iX+1, iY);
 	}
 
 

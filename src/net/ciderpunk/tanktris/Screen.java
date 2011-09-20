@@ -35,12 +35,20 @@ public class Screen extends Canvas  implements Runnable, KeyListener
   {
 		oFrame = new JFrame("Tanktris");
 		JPanel oPanel = (JPanel) oFrame.getContentPane();
-
+	
 		Dimension oSize = new Dimension(800,600);
-		oFrame.setSize(oSize);		
-		oPanel.setPreferredSize(oSize);
+	
+		this.setSize(oSize);
+		setPreferredSize(oSize);
+		setMinimumSize(oSize);
+		setMaximumSize(oSize);
+		oPanel.setSize(oSize);
+		//oFrame.setSize(oSize);		
+		//oPanel.setPreferredSize(oSize);
 
 		oPanel.add(this);
+		
+		oFrame.pack();
 		//oFrame.setSize(800, 600);
 	
 		setBounds(0,0,800,600);
@@ -94,6 +102,8 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 			oCurrentState.update();
 			//draw stuff
 			Graphics2D oG = (Graphics2D) oBuffer.getDrawGraphics();
+			
+			//oG.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 			oCurrentState.draw(oG);
 			oG.dispose();
 			

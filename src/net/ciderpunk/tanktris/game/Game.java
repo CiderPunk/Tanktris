@@ -51,7 +51,7 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		
 		registerEntity(new FrameCounter(20,20));
 		
-		oGrid = new Grid(24,12, 0,96); 
+		oGrid = new Grid(24,12, 0,108); 
 		
 	}
 	

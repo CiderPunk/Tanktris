@@ -42,15 +42,24 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		Shot.loadResources(oImg);
 		Explosion.loadResources();
 
-		aGuns = new Gun[2];
+		aGuns = new Gun[8];
 		aGuns[0] = new Gun(720,50);
 		aGuns[1] = new Gun(720,550);
 
-		registerEntity(aGuns[0]);
-		registerEntity(aGuns[1]);
+		aGuns[2] = new Gun(620,50);
+		aGuns[3] = new Gun(620,550);
+
+		aGuns[4] = new Gun(520,50);
+		aGuns[5] = new Gun(520,550);
+
+		aGuns[6] = new Gun(420,50);
+		aGuns[7] = new Gun(420,550);
+
 		
+		for (int i = 0; i < aGuns.length; i++){
+			registerEntity(aGuns[i]);
+		}
 		registerEntity(new FrameCounter(20,20));
-		
 		oGrid = new Grid(20,12, 0, 84); 
 		
 	}

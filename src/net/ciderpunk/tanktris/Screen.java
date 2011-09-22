@@ -117,15 +117,16 @@ public class Screen extends Canvas  implements Runnable, KeyListener
 			long lNextFrame = (long) Math.floor(fTimePerFrame * lTicks) + lStartTime;
 			long lDiff = lNextFrame - System.currentTimeMillis();
 			//check for long delays
-			if (lDiff < -10){
+			if (lDiff < -20){
 				//reset
 				lStartTime = System.currentTimeMillis();
 				lTicks = 0;
 				System.out.println("frame resynch, delay: " + lDiff);
 			}
 			
-			while(lDiff > 1){
-				try { Thread.sleep(lDiff / 2); } catch (Exception e) {}
+			while(lDiff > 6){
+			//	try { Thread.sleep(lDiff / 2); } catch (Exception e) {}
+				try { Thread.sleep(1); } catch (Exception e) {}
 				lDiff = lNextFrame - System.currentTimeMillis();
 			}
 		}

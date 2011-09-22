@@ -18,13 +18,13 @@ public class TetraminoBuilder {
 	
 	protected TetraminoBuilder(){
 		Tetramino[] aTetraminos = {
-			new Tetramino( new Coord[]{ new Coord(0,1), new Coord(1,1), new Coord(1,0) },0),  // square
-			new Tetramino( new Coord[]{new Coord(0,1), new Coord(0,2), new Coord(0,-1) },1), // line
-			new Tetramino( new Coord[]{new Coord(-1,0), new Coord(-1,-1), new Coord(1,0) },3), // L
-			new Tetramino( new Coord[]{ new Coord(-1,0), new Coord(-1,1), new Coord(1,0) },3), // J
-			new Tetramino( new Coord[]{ new Coord(-1,0), new Coord(0,-1), new Coord(1,0) },3), // T
-			new Tetramino( new Coord[]{ new Coord(-1,-1), new Coord(0,-1), new Coord(1,0) },3), // S
-			new Tetramino( new Coord[]{ new Coord(-1,0), new Coord(-1,0), new Coord(1,-1) },3), // Z
+			new Tetramino( new Coord[]{ new Coord(0,0), new Coord(0,1), new Coord(1,1), new Coord(1,0) },0),  // square
+			new Tetramino( new Coord[]{ new Coord(0,0), new Coord(0,1), new Coord(0,2), new Coord(0,-1) },1), // line
+			new Tetramino( new Coord[]{ new Coord(0,0), new Coord(-1,0), new Coord(-1,-1), new Coord(1,0) },3), // L
+			new Tetramino( new Coord[]{ new Coord(0,0), new Coord(-1,0), new Coord(-1,1), new Coord(1,0) },3), // J
+			new Tetramino( new Coord[]{ new Coord(0,0), new Coord(-1,0), new Coord(0,-1), new Coord(1,0) },3), // T
+			new Tetramino( new Coord[]{ new Coord(0,0), new Coord(-1,-1), new Coord(0,-1), new Coord(1,0) },3), // S
+			new Tetramino( new Coord[]{ new Coord(0,0), new Coord(-1,0), new Coord(-1,0), new Coord(1,-1) },3), // Z
 		};
 	}
 	
@@ -35,7 +35,6 @@ public class TetraminoBuilder {
 			aCoords = Coords;
 			iRotations = iRots;
 		}
-		
 	}
 	
 	class Coord{

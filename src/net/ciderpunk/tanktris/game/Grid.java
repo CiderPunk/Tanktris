@@ -10,8 +10,8 @@ public class Grid {
 	
 	
 	
-	public final static  int BLOCK_WIDTH = 32;
-	public final static  int BLOCK_HEIGHT = 32; 
+	public final static  int BLOCK_WIDTH = 36;
+	public final static  int BLOCK_HEIGHT = 36; 
 	
 	int iRows;
 	int iCols;

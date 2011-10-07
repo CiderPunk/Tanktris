@@ -17,11 +17,10 @@ public class Block extends Entity{
 	double dX;
 	boolean bUpdated;
 	boolean bAlive;
-	
-	
+		
 	Block[] aLinks;
 	
-	
+
 	public Block(Grid grid, int col, int row, double speed){
 		super(col * Grid.BLOCK_WIDTH + grid.getXOffs(), row * Grid.BLOCK_HEIGHT + grid.getYOffs());
 		iRow = row;
@@ -33,7 +32,6 @@ public class Block extends Entity{
 		bMoving = true;
 		bUpdated = false;
 	}
-	
 	
 	//links this block up with its neighbours
 	public void setLink(TetraminoBuilder.LinkDirection dir, Block block){
@@ -65,10 +63,8 @@ public class Block extends Entity{
 	}
 	
 	public void Destroy(){
-		bAlive = false;
-		
+		bAlive = false;		
 	}
-	
 	
 	public void stop(){
 		if (bMoving){
@@ -84,16 +80,10 @@ public class Block extends Entity{
 	@Override
 	public void update() {
 		if (!bUpdated && bAlive && bMoving){	
-	
 			dX += dSpeed;
 			iX = (int) Math.round(dX); 
 			int iNewCol = (int)  Math.floor(dX - oOwnerGrid.getXOffs() / Grid.BLOCK_WIDTH);
 			if (iNewCol != iCol){
-				if (oOwnerGrid.isBlock(iNewCol, iRow)){
-					
-					
-				}
-				
 				if (oOwnerGrid.isBlock(iNewCol, iRow)){
 					//STOP MOVING
 					iX = oOwnerGrid.getXOffs() + (iCol *  Grid.BLOCK_WIDTH);
@@ -114,7 +104,7 @@ public class Block extends Entity{
 		iCol = (int)  Math.floor(dX - oOwnerGrid.getXOffs() / Grid.BLOCK_WIDTH);
 		bUpdated = false;
 		oBlockFrame.draw(oG,iX,iY);
-		
+
 	}
 
 }

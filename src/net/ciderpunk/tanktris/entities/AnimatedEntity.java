@@ -14,12 +14,9 @@ public abstract class AnimatedEntity extends Entity {
 		oAnimState = new AnimationState();
 	}
 	
-	
-
 	@Override
 	public void update() {
 		oAnimState.update();
-
 	}
 	
 	@Override

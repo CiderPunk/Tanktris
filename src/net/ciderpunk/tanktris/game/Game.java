@@ -28,9 +28,13 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	
 
 	final LinkedEntity oHead;
-
+	final LinkedEntity oShots;
+	final LinkedEntity oGuns;
+	
 	private Game(){
 		oHead = new LinkedEntity();
+		oShots = new LinkedEntity();
+		oGuns = new LinkedEntity();
 	}
 	
 	
@@ -42,26 +46,12 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		Shot.loadResources(oImg);
 		Explosion.loadResources();
 
-		aGuns = new Gun[8];
-		aGuns[0] = new Gun(720,50);
-		aGuns[1] = new Gun(720,550);
 
-		aGuns[2] = new Gun(620,50);
-		aGuns[3] = new Gun(620,550);
-
-		aGuns[4] = new Gun(520,50);
-		aGuns[5] = new Gun(520,550);
-
-		aGuns[6] = new Gun(420,50);
-		aGuns[7] = new Gun(420,550);
-
-		
-		for (int i = 0; i < aGuns.length; i++){
-			registerEntity(aGuns[i]);
-		}
+		this.registerGun(new Gun(620,50));
+		this.registerGun(new Gun(620,550));
 		registerEntity(new FrameCounter(20,20));
 		oGrid = new Grid(20,12, 0, 84); 
-		
+	oGrid.createBlock();	
 	}
 	
 	
@@ -69,31 +59,50 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		oHead.insert(oEnt);
 	}
 	
-	public void update(){
-		Entity oEnt = (Entity) oHead.getNext();
+	public void registerShot(Shot oEnt){
+		this.oShots.insert(oEnt);
+	}
+	
+	public void registerGun(Gun oEnt){
+		this.oGuns.insert(oEnt);
+	}
+	
+	//draws a linked list of entities
+	protected void drawList(LinkedEntity oHeadEnt, Graphics2D oGraphics){
+		Entity oEnt = (Entity) oHeadEnt.getNext();
+		while (oEnt != null){
+			oEnt.draw(oGraphics);
+			oEnt = (Entity)oEnt.getNext();
+		}
+	}
+	
+	//updates a linked list of entities
+	protected void updateList(LinkedEntity oHeadEnt){
+		Entity oEnt = (Entity) oHeadEnt.getNext();
+
 		while (oEnt != null){
 			Entity oNextEnt = (Entity) oEnt.getNext();
 			oEnt.update();
 			oEnt = (Entity)oEnt.getNext();
 			oEnt = oNextEnt;
 		}
-
 	}
 	
+	public void update(){
+		updateList(oHead);
+		updateList(oGuns);
+		updateList(oShots);
+	}
 
 	public void draw(Graphics2D oGraphics) {
 		// TODO Auto-generated method stub
 		oGraphics.setColor(Color.green);
 		oGraphics.fillRect(0,0,800,600);
 		oGraphics.setColor(Color.WHITE);
-		
 		oGrid.draw(oGraphics);
-		
-		Entity oEnt = (Entity) oHead.getNext();
-		while (oEnt != null){
-			oEnt.draw(oGraphics);
-			oEnt = (Entity)oEnt.getNext();
-		}
+		drawList(oHead, oGraphics);
+		drawList(oShots, oGraphics);
+		drawList(oGuns, oGraphics);
 	}
 
 
@@ -101,24 +110,21 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		mouseMoved(e);
-		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		for(int i = 0; i < aGuns.length; i++){
-			aGuns[i].trackTo(e.getX(), e.getY());
-
+		Gun oGun =(Gun) oGuns.getNext();
+		while(oGun != null){
+			oGun.trackTo(e.getX(), e.getY());
+			oGun =(Gun) oGun.getNext();
 		}
-
 	}
 
 	@Override
 	public void start(Component oComponent) {
 		oComponent.addMouseMotionListener(this);
-		oComponent.addMouseListener(this);
-		// TODO Auto-generated method stub
-		
+		oComponent.addMouseListener(this);	
 	}
 
 	@Override
@@ -130,8 +136,6 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-
-		
 	}
 
 	@Override
@@ -148,16 +152,16 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		for(int i = 0; i < aGuns.length; i++){
-			aGuns[i].fire(e.getX(), e.getY());
-		}
-		
+		Gun oGun =(Gun) oGuns.getNext();
+		while(oGun != null){
+			oGun.fire(e.getX(), e.getY());
+			oGun =(Gun) oGun.getNext();
+		}	
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	

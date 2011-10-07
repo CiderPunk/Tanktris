@@ -23,7 +23,7 @@ public class LinkedEntity {
 		oNext = e;
 	}
 	
-	public LinkedEntity getNext(){
+	public synchronized LinkedEntity getNext(){
 		return oNext;
 	}
 	

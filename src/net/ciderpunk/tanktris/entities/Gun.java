@@ -60,7 +60,7 @@ public class Gun extends AnimatedEntity{
 		
 		oAnimState.startAnim(oAnimGunFire);
 		Shot oShot = new Shot(this.getX(), this.getY(), iRads,  4.0f, iTime);
-		Game.getInstance().registerEntity(oShot);
+		Game.getInstance().registerShot(oShot);
 	}
 
 	
@@ -74,7 +74,6 @@ public class Gun extends AnimatedEntity{
 
 	@Override
 	public void draw(Graphics2D oG) {
-
 		oFrameDome.draw(oG, this.iX, this.iY);
 		this.oAnimState.getFrame().drawRotate(oG, this.iX, this.iY, iRads);
 	}

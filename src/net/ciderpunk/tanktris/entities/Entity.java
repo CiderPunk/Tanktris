@@ -17,7 +17,6 @@ public abstract class Entity extends LinkedEntity {
 	public int getX(){return iX;}
 	public int getY(){return iY;}
 	
- 
 	public abstract void update();
 	public abstract void draw(Graphics2D oG);
 }

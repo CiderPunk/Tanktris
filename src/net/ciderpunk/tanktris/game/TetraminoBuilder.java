@@ -24,11 +24,11 @@ public class TetraminoBuilder {
 		return TetraminoBuilderHolder.instance;
 	}
 	
-	protected static Tetramino[] aTetraminos;
+	protected final  Tetramino[] aTetraminos;
 	
 	
 	protected TetraminoBuilder(){
-		Tetramino[] aTetraminos = {
+		Tetramino[] aTets = {
 			new Tetramino( new Point[]{ new Point(0,0), new Point(0,1), new Point(1,1), new Point(1,0) },1),  // square
 			new Tetramino( new Point[]{ new Point(0,0), new Point(0,1), new Point(0,2), new Point(0,-1) },2), // line
 			new Tetramino( new Point[]{ new Point(0,0), new Point(-1,0), new Point(-1,-1), new Point(1,0) },4), // L
@@ -37,6 +37,7 @@ public class TetraminoBuilder {
 			new Tetramino( new Point[]{ new Point(0,0), new Point(-1,-1), new Point(0,-1), new Point(1,0) },4), // S
 			new Tetramino( new Point[]{ new Point(0,0), new Point(-1,0), new Point(-1,0), new Point(1,-1) },4), // Z
 		};
+		aTetraminos = aTets;
 	}
 	
 	
@@ -94,15 +95,17 @@ public class TetraminoBuilder {
 		}
 		
 		public void buildShape(Grid oGrid) {
-			
 			Block[] aBlocks = new Block[aPoints.length];
 			//pick a row
 			int iRow =  (int) Math.floor(Math.random() * (double) (oGrid.iRows - iHeight)) + iYoffs;
 			//int iCol = iYoffs;
 			int iCol = 5;
+			//create blocks
 			for (int i = 0; i < aPoints.length; i++){
 				aBlocks[i] = new Block(oGrid, iCol + aPoints[i].x, iRow + aPoints[i].y, 0.4);
+				oGrid.registerBlock(aBlocks[i]);
 			}
+			//create links
 			for (int i = 0; i < aPoints.length; i++){
 			
 			}

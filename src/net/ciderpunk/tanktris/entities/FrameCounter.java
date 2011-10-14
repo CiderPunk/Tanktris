@@ -3,7 +3,7 @@ package net.ciderpunk.tanktris.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class FrameCounter extends Entity {
+public class FrameCounter extends PositionedEntity {
 
 	long lStartTime;
 	int iFrames;

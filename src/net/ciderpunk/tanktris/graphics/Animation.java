@@ -1,11 +1,11 @@
 package net.ciderpunk.tanktris.graphics;
 
 import java.util.ArrayList;
-import java.util.concurrent.atomic.*;
+
 
 public class Animation {
 
-	private ArrayList aCells;
+	private  ArrayList<Cell> aCells;
 	private long lTotalFrames;
 	private boolean bLoop;
 	
@@ -15,7 +15,7 @@ public class Animation {
 	}
 	
 	public Animation(boolean loop){
-		aCells = new ArrayList();
+		aCells = new ArrayList<Cell>();
 		bLoop = loop;
 	}
 	

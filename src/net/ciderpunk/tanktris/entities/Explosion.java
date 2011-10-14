@@ -1,7 +1,5 @@
 package net.ciderpunk.tanktris.entities;
 
-import java.awt.Graphics2D;
-
 import net.ciderpunk.tanktris.graphics.*;
 
 public class Explosion extends AnimatedEntity {

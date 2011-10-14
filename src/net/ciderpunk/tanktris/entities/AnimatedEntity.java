@@ -1,11 +1,9 @@
 package net.ciderpunk.tanktris.entities;
 
 import java.awt.Graphics2D;
-
-import net.ciderpunk.tanktris.IGameState;
 import net.ciderpunk.tanktris.graphics.*;
 
-public abstract class AnimatedEntity extends Entity {
+public abstract class AnimatedEntity extends PositionedEntity {
 
 	AnimationState oAnimState;
 	
@@ -21,7 +19,7 @@ public abstract class AnimatedEntity extends Entity {
 	
 	@Override
 	public void draw(Graphics2D oG) {
-		oAnimState.getFrame().draw(oG, iX, iY);
+		oAnimState.getFrame().draw(oG, getX(), getY());
 	}
 
 }

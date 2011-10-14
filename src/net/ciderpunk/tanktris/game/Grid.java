@@ -77,7 +77,7 @@ public class Grid {
 	}
 
 	public void createBlock(){
-		TetraminoBuilder.getInstance().buildTetramino(this);
+	//	TetraminoBuilder.getInstance().buildTetramino(this);
 	}
 	
 	

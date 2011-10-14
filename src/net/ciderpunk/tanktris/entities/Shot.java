@@ -8,7 +8,7 @@ import net.ciderpunk.tanktris.game.Game;
 import net.ciderpunk.tanktris.graphics.Animation;
 import net.ciderpunk.tanktris.graphics.Frame;
 
-public class Shot extends Entity{
+public class Shot extends PositionedEntity{
 	
 	static Frame oFrameShot;
 	double dX;

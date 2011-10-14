@@ -44,14 +44,14 @@ public class Game implements IGameState, MouseMotionListener, MouseListener {
 		
 		Gun.loadResources(oImg);
 		Shot.loadResources(oImg);
+		Block.loadResources(oImg);
 		Explosion.loadResources();
-
-
+		
 		this.registerGun(new Gun(620,50));
 		this.registerGun(new Gun(620,550));
 		registerEntity(new FrameCounter(20,20));
 		oGrid = new Grid(20,12, 0, 84); 
-	oGrid.createBlock();	
+		//oGrid.createBlock();	
 	}
 	
 	
